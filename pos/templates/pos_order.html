@@ -1,0 +1,67 @@
+{% extends "base_order.html" %}{% load static %}
+{% block title %}Order | linkaran{% endblock %}
+{% block content %}
+		<section class="hero">
+				<div class="hero-body pt-0">
+					<!-- <h2 class="title is-3 has-text-centered">Order Form</h2> -->
+					<div class="container ">
+						<!-- <div class="colums"> -->
+							<!-- <div class="column is-half is-offset-one-quarter "> -->
+							<!-- </div> -->
+						<!-- </div><br> -->
+						<div class="columns">
+							<div class="column is-one-third">
+								<div class="">
+									<h2 class="title is-4 has-text-centered is-size-6-mobile">Add Products to Bill</h2>
+									<p class="is-size-4">
+										<div>
+											{% for product in products %}
+											<span id="removelist-{{ product.id }}"><a class="button is-rounded mb-2 " onclick="addItem({{ product.id }}, '{{ product.name }}',1, {{ product.price }})" >{{ product.name }}</a>&nbsp;</span>{% endfor %}
+										</div>
+									</p>
+								</div>
+							</div>
+							<div class="column">
+								<div class="box">
+									<div class="columns">
+										<div class="column is-half">
+											<h2 class="title is-4 has-text-centered is-size-6-mobile">Order Summary</h2>
+										</div>
+										<div class="column">
+											<input class="input is-small is-primary" id="customer_name" type="text" placeholder="CUSTOMER NAME">
+										</div>
+									</div>
+									<!-- <div class="field"> -->
+										<table class="table is-fullwidth is-narrow is-size-7-mobile">
+										  <thead>
+										    <tr>
+										      <td><strong>Item</strong></td>
+										      <td class=""><strong>Qty</strong></td>
+										      <td class=""><strong>Price</strong></td>
+										      <td class=""><strong>Subtotal</strong></td>
+										      <td class=""><strong>Change Qty</strong></td>
+										    </tr>
+										  </thead>
+										  <tbody id="summary-table-body">
+										    <tr id="total-tr">
+										      <td colspan="3" class="has-text-black-bis is-size-5 has-text-centered is-size-7-mobile">Total</td>
+										      <td id="show-total" class="has-text-black-bis is-size-5 has-text-right is-size-7-mobile">Rp 0 </td>
+										    </tr>
+										  </tbody>
+										</table>
+								</div>
+
+								<div class="btn-group special" role="group">
+								  {% csrf_token %}
+								  <button class="button is-link is-rounded" onclick="postOrder('{% url 'getorder' %}','{{ user.get_username }}')">Submit Bill</button>
+								  <button class="button is-primary is-rounded" onclick="clearAllItems()">Clear</button>
+								  <!-- <button class="button is-danger" onclick="location.href='/'">Cancel</button> -->
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+<script src="{% static 'js/script.js' %}"></script>{% endblock %}
+

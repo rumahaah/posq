@@ -1,0 +1,48 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% block title %}{% endblock %}</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bulma.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/fontawesome5.15.2.all.min.css' %}">
+</head>
+<body>
+	<!-- START NAV -->
+		<nav class="navbar pb-0">
+			<div class="container">
+				<div class="navbar-brand">
+					<a class="navbar-item" href="../">
+						<!-- <img src="{% static 'img/test.jpg' %}" alt="Logo"> -->
+						<span>Warung Linkaran</span>
+					</a>
+					<span class="navbar-burger burger" data-target="navbarMenu">
+						<span></span>
+						<span></span>
+						<span></span>
+					</span>
+				</div>
+				<div id="navbarMenu" class="navbar-menu">
+					<div class="navbar-end">
+						<a class="navbar-item">Order</a>
+						<a class="navbar-item">Stock</a>
+						<a class="navbar-item">Cash Status</a>
+						<div class="navbar-item has-dropdown is-hoverable">
+							<a class="navbar-link">Account</a>
+							<div class="navbar-dropdown">
+								<a class="navbar-item">Profile</a>
+								<a class="navbar-item" href="/admin/password_change/">Reset Password</a>
+								<hr class="navbar-divider">
+								<a class="navbar-item" href="{% url 'logout'%}">Logout</a>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<!-- END NAV --> 
+		{% block content %}{% endblock %}
+
+</body>
+</html>

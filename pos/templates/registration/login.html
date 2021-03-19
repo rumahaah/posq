@@ -1,0 +1,50 @@
+{% load static %}<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Please - Warung Linkaran</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bulma.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/fontawesome5.15.2.all.min.css' %}">
+  </head>
+  <body>
+    <section class="hero is-fullheight">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          
+          <div class="column is-4 is-offset-4">
+            <div class="">
+              <p class="subtitle is-4 is-family-code">Warung linkaran</p>
+              <form method="post" action="">{% csrf_token %}
+                <div class="field">
+                  <p class="control has-icons-right">
+                    <input class="input is-medium is-rounded" id="username" name="username" type="text" placeholder="Username" />
+                    <span class="icon is-small is-right">
+                      <i class="fas fa-user-tag"></i>
+                    </span>
+                  </p>
+                </div>
+                <div class="field">
+                  <p class="control has-icons-right">
+                    <input class="input is-medium is-rounded" id="password" name="password" type="password" placeholder="Password" />
+                    <span class="icon is-small is-right">
+                      <i class="fas fa-key"></i>
+                    </span>
+                  </p>
+                </div>
+                <button class="button is-rounded is-block is-primary is-medium is-fullwidth">Login</button><br />
+              </form>
+            </div>
+            {% if form.errors %}
+            <div class="box has-text-danger-dark">
+            <p>Your username and password didn't match. Please try again.</p>{% endif %}{% if next %}
+              {% if user.is_authenticated %}<p>Your account doesn't have access to this page. To proceed, please login with an account that has access.</p>{% else %}{% endif %}
+            </div>{% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="has-text-centered is-size-7 pb-3">©2021 | Created with smile</div>
+    </section>
+  </body>
+</html>
