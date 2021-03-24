@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'pos.apps.PosConfig',
+    # 'sequences.apps.SequencesConfig',
     # 'rest_framework',
 ]
 

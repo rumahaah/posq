@@ -12,5 +12,6 @@ urlpatterns = [
     # path('', include(router.urls)),
     path('getorder', views.getorder, name='getorder'),
     path('cobaorder', views.cobaorder, name='cobaorder'),
+    path('reportorder', views.reportorder, name='reportorder'),
     # path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

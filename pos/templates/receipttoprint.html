@@ -63,7 +63,7 @@
       <th class="quantity">Price</th>
    </tr>
 </thead>
-<tbody>{% for order in orders %}{% for orderitem in order.order_item_set.all %}
+<tbody>{% for order in orders %}{% for orderitem in order.orderitem_set.all %}
   <tr>
    <td class="description">{{ orderitem.product.name }} @{{ orderitem.product.price|floatformat|intcomma }}</td>
    <td class="quantity centered">{{ orderitem.quantity }}</td>

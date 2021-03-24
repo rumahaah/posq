@@ -16,7 +16,7 @@
 									<p class="is-size-4">
 										<div>
 											{% for product in products %}
-											<span id="removelist-{{ product.id }}"><a class="button is-rounded mb-2 " onclick="addItem({{ product.id }}, '{{ product.name }}',1, {{ product.price }})" >{{ product.name }}</a>&nbsp;</span>{% endfor %}
+											<span id="removelist-{{ product.id }}"><a class="button is-rounded mb-2 is-uppercase" onclick="addItem({{ product.id }}, '{{ product.name }}',1, {{ product.price }})" >{{ product.name }}</a>&nbsp;</span>{% endfor %}
 										</div>
 									</p>
 								</div>

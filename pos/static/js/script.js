@@ -172,28 +172,3 @@ function postOrder(url,user) {
   document.body.appendChild(form);
   form.submit();
 }
-
-
-// function plus(record_id, change_qty, subtotal_price) {
-//   window ['change_qty'+record_id] += change_qty;
-//   document.getElementById("qty-" + record_id).innerHTML = window ['change_qty'+record_id];
-//   total_price -= window ['subtotal_price'+record_id];
-//   window ['subtotal_price'+record_id] += subtotal_price;
-//   document.getElementById("subtotal-" + record_id).innerHTML = new Intl.NumberFormat('id').format(window ['subtotal_price'+record_id]);
-//   total_price += window ['subtotal_price'+record_id];
-//   showTotal(document.getElementById('summary-table-body'));
-//   product_ids[record_id-1][1]=window ['change_qty'+record_id];
-//   // console.log(product_ids);
-// }
-
-// function minus(record_id, change_qty, subtotal_price) {
-//   window ['change_qty'+record_id] -= change_qty;
-//   document.getElementById("qty-" + record_id).innerHTML = window ['change_qty'+record_id];
-//   total_price -= window ['subtotal_price'+record_id];
-//   window ['subtotal_price'+record_id] -= subtotal_price;
-//   document.getElementById("subtotal-" + record_id).innerHTML = new Intl.NumberFormat('id').format(window ['subtotal_price'+record_id]);
-//   total_price += window ['subtotal_price'+record_id];
-//   showTotal(document.getElementById('summary-table-body'));
-//   product_ids[record_id-1][1]=window ['change_qty'+record_id];
-//   // console.log(product_ids);
-// }

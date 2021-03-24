@@ -1,0 +1,56 @@
+{% extends "base_order.html" %}{% load static %}{% load humanize %}
+{% block title %}Report Order | linkaran{% endblock %}
+{% block content %}
+<section class="hero">
+    <div class="hero-body pt-0">
+      <div class="container ">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="">No</th>
+              <th class="">Order ID</th>
+              <th class="">Customer Name</th>
+              <th class="">Oder ID</th>
+              <th class="">Detail Items</th>
+              <th class="">Total Price</th>
+              <th class="">Date/Time</th>
+            </tr>
+          </thead>
+          </thead>
+          <tbody>{% for order in orders %}
+            <tr>
+             <td class="">{{forloop.counter}}</td>
+             <td class="">{{order.id}}</td>
+             <td class="">{{order.customer_name}}</td>
+             <td class="">{{order.order_number}}</td>
+             <td class="">
+
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="">No</th>
+                    <th class="">Product Name</th>
+                    <th class="">Price</th>
+                    <th class="">Qty</th>
+                  </tr>
+                </thead>
+                <tbody>{% for orderitem in order.orderitem_set.all %}
+                  <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{ orderitem.product.name }}</td>
+                    <td>{{ orderitem.product.price|floatformat|intcomma }}</td>
+                    <td>{{ orderitem.quantity }}</td>
+                  </tr>{% endfor %}
+                </tbody>
+              </table>
+
+              </td>
+              <td class="">{{order.total_price|floatformat|intcomma}}</td>
+              <td class="">{{order.creation_timestamp}}</td>
+            </tr>{% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+{% endblock %}
