@@ -1,9 +1,5 @@
 from django.db import models
 from django.conf import settings
-from django.utils import timezone
-# from sequences import get_next_value
-# from sequences.models import Sequence
-
 
 # Create your models here.
 
@@ -26,14 +22,13 @@ class Sequence(models.Model):
 	number = models.PositiveIntegerField()
 
 	def __str__(self):
-		return "%s - " % (self.name)
+		return "%s - %s " % (self.name, self.number)
 
 class Order(models.Model):
-	uniqnumber = "JD-00000000"
 	user = models.ForeignKey(settings.AUTH_USER_MODEL,
 							 on_delete=models.CASCADE)
 	customer_name = models.CharField(max_length=100)
-	order_number = models.CharField(max_length=12, default=uniqnumber, blank=True)
+	order_number = models.CharField(max_length=12, unique=True, default='JD-00000000', blank=True)
 	total_price = models.DecimalField(max_digits=10,
 									  decimal_places=2,
 									  default=0)

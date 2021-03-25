@@ -21,9 +21,9 @@ def pos_order(request):
 		})
 
 @login_required
-def cobaorder(request):
-	orders = Order.objects.filter(id=48)
-	return render(request, 'receipttoprint.html',{
+def receiptorder(request,paramm=None):
+	orders = Order.objects.filter(order_number=paramm)
+	return render(request, 'receiptshow.html',{
 		'orders': orders,
 		})
 

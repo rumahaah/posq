@@ -1,0 +1,60 @@
+{% load humanize %}{% load extratemplate %}{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>{% block title %}{% endblock %}</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/rubik.css' %}">
+	<style type="text/css">
+		* {
+			font-size: 11px; font-family: 'Rubik'; }
+			td, th, tr, table { border-top: 1px solid gray; border-collapse: collapse; font-size: 10px; }
+			td.description, th.description { width: 110px; max-width: 110px; text-transform: uppercase; }
+			td.quantity, th.quantity { width: 20px; max-width: 20px; word-break: break-all; }
+			td.price, th.price { width: 50px; max-width: 50px; word-break: break-all; text-align: right; }
+			.centered { text-align: center; align-content: center; }
+			.ticket { width: 180px; max-width: 180px; }
+			img { max-width: inherit; width: inherit; }
+			@media print { .hidden-print, .hidden-print * { display: none !important; }}
+			.button { text-align: center; text-decoration: none; background-color: #00c4a7; border-color: transparent; color: #fff;padding: 30px 24px 30px 24px; border-radius: 290486px; border-width: 1px; justify-content: center; box-shadow: none; font-weight: bold; }
+		</style>
+	</head>
+	<body>
+		<div class="ticket">
+			{% block logo %}{% endblock %}
+			{% block content %}{% endblock %}
+			<div class="centered" ><span style="font-weight: bold;">LONTONG MEDAN</span>
+				<br>Juanda Depok
+				<br><span style="font-size: 10;">{% now "j F Y H:i" %}</span>
+				<br><span style="font-size: 10;">No Order: {% for order in orders %}{{ order.order_number}}{% endfor %}</span>
+			</div>
+			<table>
+				<thead>
+					<tr>
+						<th class="">Items</th>
+						<th class="quantity">Qty</th>
+						<th class="quantity">Price</th>
+					</tr>
+				</thead>
+				<tbody>{% for order in orders %}{% for orderitem in order.orderitem_set.all %}
+					<tr>
+						<td class="description">{{ orderitem.product.name }} @{{ orderitem.product.price|floatformat|intcomma }}</td>
+						<td class="quantity centered">{{ orderitem.quantity }}</td>
+						<td class="price">{% multiply orderitem.quantity orderitem.product.price %}</td>
+					</tr>{% endfor %}{% endfor %}
+					<tr>
+						<td colspan="2" class="description centered" style="font-weight: bold;">Total</td>
+						<td class="price" style="font-weight: bold;">{% for order in orders %}{{ order.total_price|floatformat|intcomma }}{% endfor %}</td>
+					</tr>
+				</tbody>
+			</table>
+			<div style="text-align: center;">Thanks for your purchase :-)</div>
+		<div style="width: 180px; text-align: center; ">
+			<button onclick="window.print()" class="hidden-print button">Print</button>
+			<a class="hidden-print button" href="/pos">Order</a>
+		</div>
+	</div>
+	{% block js %}{% endblock %}
+</body>
+</html>
